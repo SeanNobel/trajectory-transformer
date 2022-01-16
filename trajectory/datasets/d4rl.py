@@ -40,6 +40,7 @@ def qlearning_dataset_with_timeouts(env, dataset=None, terminate_on_end=False, *
     realdone_ = []
 
     episode_step = 0
+    maximum_episode_step = 1000
     for i in range(N-1):
         obs = dataset['observations'][i]
         new_obs = dataset['observations'][i+1]
@@ -47,10 +48,12 @@ def qlearning_dataset_with_timeouts(env, dataset=None, terminate_on_end=False, *
         reward = dataset['rewards'][i]
         done_bool = bool(dataset['terminals'][i])
         realdone_bool = bool(dataset['terminals'][i])
-        final_timestep = dataset['timeouts'][i]
+        # final_timestep = dataset['timeouts'][i]
+        final_timestep = (episode_step == maximum_episode_step-1)
 
         if i < N - 1:
-            done_bool += dataset['timeouts'][i] #+1]
+            # done_bool += dataset['timeouts'][i] #+1]
+            done_bool += (episode_step == maximum_episode_step-1)
 
         if (not terminate_on_end) and final_timestep:
             # Skip this transition and don't apply terminals on the last step of an episode

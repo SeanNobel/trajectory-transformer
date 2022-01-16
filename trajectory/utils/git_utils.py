@@ -1,4 +1,3 @@
-"""
 import os
 import git
 import pdb
@@ -39,5 +38,3 @@ if __name__ == '__main__':
     print(git_rev)
 
     save_git_diff('diff_test.txt')
-
-"""

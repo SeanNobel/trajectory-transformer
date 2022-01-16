@@ -18,10 +18,11 @@ def suppress_output():
     with open(os.devnull, 'w') as fnull:
         with redirect_stderr(fnull) as err, redirect_stdout(fnull) as out:
             yield (err, out)
-
+"""
 with suppress_output():
     ## d4rl prints out a variety of warnings
     import d4rl
+"""
 
 # def construct_dataloader(dataset, **kwargs):
 #     dataloader = torch.utils.data.DataLoader(dataset, shuffle=True, pin_memory=True, **kwargs)
@@ -76,6 +77,7 @@ def qlearning_dataset_with_timeouts(env, dataset=None, terminate_on_end=False, *
         'realterminals': np.array(realdone_)[:,None],
     }
 
+"""
 def load_environment(name):
     with suppress_output():
         wrapped_env = gym.make(name)
@@ -83,3 +85,4 @@ def load_environment(name):
     env.max_episode_steps = wrapped_env._max_episode_steps
     env.name = name
     return env
+"""
